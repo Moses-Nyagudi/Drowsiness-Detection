@@ -1,0 +1,49 @@
+{% extends 'layout.html' %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+<h2>Home Page</h2>
+<p>Welcome back, {{ username }}!</p>
+<h2>Drowsy App</h2>
+    <div class="row">
+      <div class="col-12 text-center">
+        
+      </div>
+      <div class="col-12 text-center">
+        <p>When ready press the buttons to start the app</p>
+      </div>
+    </div>
+<button id="turn-on-camera-button" class="green-button" role="button">Turn on Camera</button>
+<button id="stop-camera-button" class="red-button" role="button">Stop Camera</button>
+
+<script>
+  document.getElementById('turn-on-camera-button').addEventListener('click', function() {
+    fetch('/turn_on_camera')
+      .then(response => response.text())
+      .then(data => console.log(data));
+  });
+
+  document.getElementById('stop-camera-button').addEventListener('click', function() {
+    fetch('/stop_camera')
+      .then(response => response.text())
+      .then(data => console.log(data));
+  });
+
+  document.getElementById('turn-on-camera-button').addEventListener('click', function() {
+    this.style.backgroundColor = 'green';
+    fetch('/turn_on_camera')
+      .then(response => response.text())
+      .then(data => console.log(data));
+  });  
+  
+  document.getElementById('stop-camera-button').addEventListener('click', function() {
+    this.style.backgroundColor = 'red';
+    fetch('/stop_camera')
+      .then(response => response.text())
+      .then(data => console.log(data));
+  });
+</script>
+
+    
+{% endblock %}
